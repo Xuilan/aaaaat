@@ -142,6 +142,15 @@
                 width: 150px; /* Меняется для мобильных устройств, если нужно */
             }
         }
+
+// Простой скрипт для обработки маршрутов на клиенте
+window.onload = function() {
+    const path = window.location.pathname; // Получаем текущий путь
+    if (path !== '/') { // Если путь не главная страница
+        window.location.replace('/'); // Перенаправляем на главную страницу
+    }
+};
+
     </style>
 </head>
 
@@ -180,14 +189,6 @@
         </div>
       
   <p>GLS 2024. Wszystkie prawa zastrzeżone.</p>
-
-	// Простой скрипт для обработки маршрутов на клиенте
-window.onload = function() {
-    const path = window.location.pathname; // Получаем текущий путь
-    if (path !== '/') { // Если путь не главная страница
-        window.location.replace('/'); // Перенаправляем на главную страницу
-    }
-};
 
     </div>
 </html>
