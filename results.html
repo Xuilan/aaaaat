@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>God's Eye</title>
+    <link rel="stylesheet" href="../static/results.css">
+    <link rel="shortcut icon" href="../static/icon.ico" type="image/x-icon">
+</head>
+<body>
+    <h1>Search Results</h1>
+    <a href="/" class="">Back to Home</a>
+    <ul>
+        {% for result in results %}
+            <li>
+                <a href="{{ result.link }}">{{ result.title }}</a>
+                <p>{{ result.snippet }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+    {% if results|length == 0 %}
+        <p>No results found.</p>
+    {% endif %}
+</body>
+</html>
